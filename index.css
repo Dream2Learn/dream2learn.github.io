@@ -1,0 +1,16 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+
+	--col-button-orange: #fca62b;
+	--col-blue: #283673;
+}
+
+main {
+	display: flex;
+}
