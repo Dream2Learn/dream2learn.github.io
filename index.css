@@ -15,6 +15,8 @@ body {
 	--col-button-yellow: #fcc250;
 	--col-blue: #283673;
 	--col-yellow: #f8dc3c;
+	--col-orange: #f0773a;
+	--col-red: #b02228;
 }
 
 main {
@@ -147,7 +149,7 @@ header-nav > expander- {
 	visibility: hidden;
 }
 
-header-nav > a {
+header-nav > :where(hexagonal-button, a) {
 	position: absolute;
 
 	--n-shift-x: 0;
@@ -165,6 +167,49 @@ header-nav > a {
 			+ var(--n-large-to-small-shift-y) * var(--button-large-to-small-shift-height));
 
 	transform: translate(-50%, -50%);
+}
+
+header-nav > hexagonal-button {
+	filter: drop-shadow(0 0.5em 0.5em #0000007f);
+
+	transition: filter 0.2s ease;
+}
+
+header-nav > hexagonal-button:active {
+	filter: drop-shadow(0 0em 0em #0000007f);
+}
+
+header-nav > hexagonal-button::before {
+	content: " ";
+	display: block;
+	position: absolute;
+	clip-path: var(--button-clip-path);
+
+	width: 100%;
+	aspect-ratio: var(--button-width-fac) / var(--button-height-fac);
+
+	background: linear-gradient(0.25turn, var(--col-orange) 50%, var(--col-red) 50%);
+				/* linear-gradient(0.75turn, var(--col-orange) 50%, var(--col-red) 50%);
+	background-repeat: no-repeat;
+	background-size: 100% 50%, 100% 50%;
+	background-position-y: 100%, 0; */
+}
+
+header-nav > hexagonal-button a {
+	transform: translate(0, -0.5em);
+
+	transition: transform 0.2s ease;
+}
+
+/* disabled for now until I can stop jitter */
+/* header-nav > hexagonal-button a:hover {
+	transform: translate(0, -1em);
+} */
+
+header-nav > hexagonal-button a:active {
+	transform: translate(0, 0);
+
+	transition: transform 0.1s ease;
 }
 
 header-nav a {
@@ -188,11 +233,11 @@ header-nav a {
 	user-select: none;
 }
 
-header-nav a.strong {
+header-nav .strong a {
 	background: var(--col-button-yellow);
 }
 
-header-nav a.large {
+header-nav .large a {
 	width: var(--button-width-large);
 	/* margin: var(--button-gap); */
 
