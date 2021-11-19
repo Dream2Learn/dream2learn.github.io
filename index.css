@@ -26,16 +26,19 @@ main > header {
 	--gradient-height: 20vh;
 
 	min-height: 100vh;
+	padding-top: 6em;
 	padding-bottom: var(--gradient-height);
 	display: grid;
 
-	/* #62ffff7f */
-	background: linear-gradient(var(--col-blue) calc(100vh - var(--gradient-height)), #4cbfc97f, #62ffff00); /* temp */
+	/* #62ffff7f, #4cbfc97f */
+	background: /* temp */
+			linear-gradient(#0000 calc(100vh - var(--gradient-height)), #fff),
+			linear-gradient(var(--col-blue) calc(100vh - var(--gradient-height)), #62ffff);
 	color: #fff;
 }
 
 header-content {
-	margin: 0 10em;
+	margin: 0 15vw;
 	display: flex;
 
 	/* M 140,0 0,94 V 179 l 140,94 140,-94 V 94 Z */
@@ -64,15 +67,23 @@ header-content {
 	--button-aspect-ratio: calc(var(--button-width-fac) / var(--button-height-fac));
 
 	--button-width: 115px;
+	--button-height: calc(var(--button-width) / var(--button-aspect-ratio));
 
 	--button-width-large: 200px;
 	--button-height-large: calc(var(--button-width-large) / var(--button-aspect-ratio));
-	--button-gap: 30px;
+	--button-gap: 20px;
 
-	--button-slant-sine-fac: 0.83022113; /* = sin(atan(140 / 94)); sine of slant angle to account for gap being at an angle when shifting vertically */
+	/* shift for a small button to be positioned properly amid a group of large buttons */
+	--button-large-to-small-shift-height: calc((var(--button-height-large) - var(--button-height)) / 2);
+	--button-large-to-small-shift-width: calc((var(--button-width-large) - var(--button-width)) / 2);
+
+	/* sine of slant angle, to account for gap being at an angle when shifting vertically */
+	--button-slant-sine-fac: 0.83022113; /* = sin(atan(140 / 94)) */
 
 	--button-shift-width-large: calc(var(--button-width-large) + var(--button-gap));
-	--button-shift-height-large: calc(var(--button-height-large) + var(--button-gap) * var(--button-slant-sine-fac));
+	--button-shift-height-large: calc(var(--button-height-large) + var(--button-gap) * var(--button-slant-sine-fac) * 1.5); /* why 1.5? */
+
+	--button-shift-width: calc(var(--button-width) + var(--button-gap));
 }
 
 header-content > * {
@@ -136,19 +147,27 @@ header-nav > expander- {
 	visibility: hidden;
 }
 
-header-nav > hexagonal-button {
+header-nav > a {
 	position: absolute;
 
 	--n-shift-x: 0;
 	--n-shift-y: 0;
+	--n-shift-small-x: 0;
+	--n-large-to-small-shift-x: 0;
+	--n-large-to-small-shift-y: 0;
 
-	left: calc(50% + var(--n-shift-x) * var(--button-shift-width-large) * var(--button-slant-shift-width-fac));
-	top: calc(50% + var(--n-shift-y) * var(--button-shift-height-large) * var(--button-slant-shift-height-fac));
+	left: calc(50%
+			+ var(--n-shift-x) * var(--button-shift-width-large) * var(--button-slant-shift-width-fac)
+			+ var(--n-shift-small-x) * var(--button-shift-width)
+			+ var(--n-large-to-small-shift-x) * var(--button-large-to-small-shift-width));
+	top: calc(55%
+			+ var(--n-shift-y) * var(--button-shift-height-large) * var(--button-slant-shift-height-fac)
+			+ var(--n-large-to-small-shift-y) * var(--button-large-to-small-shift-height));
 
 	transform: translate(-50%, -50%);
 }
 
-hexagonal-button {
+header-nav a {
 	clip-path: var(--button-clip-path);
 	display: grid;
 	place-items: center;
@@ -160,19 +179,22 @@ hexagonal-button {
 	color: var(--col-blue);
 
 	font-weight: 900;
-	font-size: 1.25em;
+	font-size: 1.35em;
 	line-height: 1;
 	letter-spacing: 0.05em;
 	text-transform: uppercase;
+	text-decoration: none;
+
+	user-select: none;
 }
 
-hexagonal-button.strong {
+header-nav a.strong {
 	background: var(--col-button-yellow);
 }
 
-hexagonal-button.large {
+header-nav a.large {
 	width: var(--button-width-large);
 	/* margin: var(--button-gap); */
 
-	font-size: 2em;
+	font-size: 2.25em;
 }

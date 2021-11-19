@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   width="286"
-   height="226"
-   viewBox="0 0 75.670823 59.795836"
+   viewBox="0 0 74.083323 59.795836"
    version="1.1"
    id="svg8"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
@@ -25,7 +23,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="-45.357143"
+     inkscape:cx="-48.214286"
      inkscape:cy="138.92857"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
@@ -38,10 +36,16 @@
      inkscape:window-height="1027"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
-     inkscape:window-maximized="1">
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
     <inkscape:grid
        type="xygrid"
-       id="grid2405" />
+       id="grid2405"
+       originx="-0.79374992"
+       originy="0" />
   </sodipodi:namedview>
   <metadata
      id="metadata5">
@@ -59,7 +63,8 @@
      id="layer3"
      inkscape:label="sketch"
      style="display:none"
-     sodipodi:insensitive="true">
+     sodipodi:insensitive="true"
+     transform="translate(-0.79374999)">
     <g
        inkscape:label="Layer 1"
        inkscape:groupmode="layer"
@@ -107,7 +112,8 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="trace"
-     style="display:inline">
+     style="display:inline"
+     transform="translate(-0.79374999)">
     <g
        id="g2790">
       <path
