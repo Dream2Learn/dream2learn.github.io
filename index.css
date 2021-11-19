@@ -4,13 +4,175 @@
 
 body {
 	width: 100vw;
-	height: 100vh;
+	min-height: 100vh;
 	margin: 0;
 
+	font-family: Overpass, sans-serif;
+
+	color: var(--col-blue);
+
 	--col-button-orange: #fca62b;
+	--col-button-yellow: #fcc250;
 	--col-blue: #283673;
+	--col-yellow: #f8dc3c;
 }
 
 main {
 	display: flex;
+	flex-flow: column;
+}
+
+main > header {
+	--gradient-height: 20vh;
+
+	min-height: 100vh;
+	padding-bottom: var(--gradient-height);
+	display: grid;
+
+	/* #62ffff7f */
+	background: linear-gradient(var(--col-blue) calc(100vh - var(--gradient-height)), #4cbfc97f, #62ffff00); /* temp */
+	color: #fff;
+}
+
+header-content {
+	margin: 0 10em;
+	display: flex;
+
+	/* M 140,0 0,94 V 179 l 140,94 140,-94 V 94 Z */
+	/* width = 280; height = 273 */
+
+	--button-clip-path: polygon(
+		calc(140 / 280 * 100%) 0,
+		0 calc(94 / 273 * 100%),
+		0 calc(179 / 273 * 100%),
+		calc(140 / 280 * 100%) 100%,
+		100% calc(179 / 273 * 100%),
+		100% calc(94 / 273 * 100%));
+
+	--button-width-fac: 280;
+	--button-height-fac: 273;
+
+	/* dimensions of one slanted edge of the hexagonal button */
+	--button-slant-width-fac: 140;
+	--button-slant-height-fac: 94;
+
+	/* factors to multiply with the shift sizes in order for the slants to line up */
+	--button-slant-shift-width-fac: calc(1 - var(--button-slant-width-fac) / var(--button-width-fac));
+	--button-slant-shift-height-fac: calc(1 - var(--button-slant-height-fac) / var(--button-height-fac));
+
+
+	--button-aspect-ratio: calc(var(--button-width-fac) / var(--button-height-fac));
+
+	--button-width: 115px;
+
+	--button-width-large: 200px;
+	--button-height-large: calc(var(--button-width-large) / var(--button-aspect-ratio));
+	--button-gap: 30px;
+
+	--button-slant-sine-fac: 0.83022113; /* = sin(atan(140 / 94)); sine of slant angle to account for gap being at an angle when shifting vertically */
+
+	--button-shift-width-large: calc(var(--button-width-large) + var(--button-gap));
+	--button-shift-height-large: calc(var(--button-height-large) + var(--button-gap) * var(--button-slant-sine-fac));
+}
+
+header-content > * {
+	flex-grow: 1;
+}
+
+
+/* LOGOTYPE */
+
+header-content > logotype- {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+}
+
+logotype- img {
+	width: 200px;
+}
+
+logotype- h1 {
+	font-family: Zilla Slab, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
+	font-size: 4em;
+	margin: 0;
+}
+
+logotype- h1 strong {
+	color: var(--col-yellow);
+}
+
+logotype- > logotype-details {
+	margin-top: 2rem;
+
+	font-size: 1.5rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-align: center;
+	color: var(--col-yellow);
+}
+
+logotype-details strong {
+	font-weight: 900;
+	text-transform: uppercase;
+	font-size: 2rem;
+}
+
+logotype-details p {
+	margin: 0.25em 0;
+}
+
+
+/* HEADER BUTTONS */
+
+header-nav {
+	position: relative;
+}
+
+header-nav > expander- {
+	display: block;
+	width: calc(2 * var(--button-width-large));
+	visibility: hidden;
+}
+
+header-nav > hexagonal-button {
+	position: absolute;
+
+	--n-shift-x: 0;
+	--n-shift-y: 0;
+
+	left: calc(50% + var(--n-shift-x) * var(--button-shift-width-large) * var(--button-slant-shift-width-fac));
+	top: calc(50% + var(--n-shift-y) * var(--button-shift-height-large) * var(--button-slant-shift-height-fac));
+
+	transform: translate(-50%, -50%);
+}
+
+hexagonal-button {
+	clip-path: var(--button-clip-path);
+	display: grid;
+	place-items: center;
+	text-align: center;
+	width: var(--button-width);
+	aspect-ratio: var(--button-width-fac) / var(--button-height-fac);
+
+	background: var(--col-button-orange);
+	color: var(--col-blue);
+
+	font-weight: 900;
+	font-size: 1.25em;
+	line-height: 1;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+hexagonal-button.strong {
+	background: var(--col-button-yellow);
+}
+
+hexagonal-button.large {
+	width: var(--button-width-large);
+	/* margin: var(--button-gap); */
+
+	font-size: 2em;
 }
