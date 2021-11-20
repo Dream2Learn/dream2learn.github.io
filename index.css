@@ -169,17 +169,53 @@ header-nav > :where(hexagonal-button, a) {
 	transform: translate(-50%, -50%);
 }
 
-header-nav > hexagonal-button {
+hexagonal-button {
+	display: grid;
+
+	color: var(--col-blue);
+
+	font-weight: 900;
+	font-size: 1.35em;
+	line-height: 1;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	text-decoration: none;
+
 	filter: drop-shadow(0 0.5em 0.5em #0000007f);
 
 	transition: filter 0.2s ease;
 }
 
-header-nav > hexagonal-button:active {
+hexagonal-button.large {
+	font-size: 2.25em;
+}
+
+
+hexagonal-button > * {
+	grid-area: 1 / 1;
+
+	transform: translate(0, -0.5em);
+}
+
+hexagonal-button:active {
 	filter: drop-shadow(0 0em 0em #0000007f);
 }
 
-header-nav > hexagonal-button::before {
+hexagonal-button > button-top {
+	transition: transform 0.2s ease;
+}
+
+hexagonal-button > a:hover + button-top {
+	transform: translate(0, -1em);
+}
+
+hexagonal-button > a:active + button-top {
+	transform: translate(0, 0);
+
+	transition: transform 0.1s ease;
+}
+
+hexagonal-button::before {
 	content: " ";
 	display: block;
 	position: absolute;
@@ -195,51 +231,35 @@ header-nav > hexagonal-button::before {
 	background-position-y: 100%, 0; */
 }
 
-header-nav > hexagonal-button a {
-	transform: translate(0, -0.5em);
-
-	transition: transform 0.2s ease;
-}
-
-/* disabled for now until I can stop jitter */
-/* header-nav > hexagonal-button a:hover {
-	transform: translate(0, -1em);
-} */
-
-header-nav > hexagonal-button a:active {
-	transform: translate(0, 0);
-
-	transition: transform 0.1s ease;
-}
-
-header-nav a {
+hexagonal-button > :where(a, button-top) {
 	clip-path: var(--button-clip-path);
+	aspect-ratio: var(--button-width-fac) / var(--button-height-fac);
+}
+
+hexagonal-button > a {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+hexagonal-button > button-top {
 	display: grid;
 	place-items: center;
 	text-align: center;
 	width: var(--button-width);
-	aspect-ratio: var(--button-width-fac) / var(--button-height-fac);
 
 	background: var(--col-button-orange);
-	color: var(--col-blue);
-
-	font-weight: 900;
-	font-size: 1.35em;
-	line-height: 1;
-	letter-spacing: 0.05em;
-	text-transform: uppercase;
-	text-decoration: none;
 
 	user-select: none;
+	pointer-events: none;
 }
 
-header-nav .strong a {
+hexagonal-button.strong button-top {
 	background: var(--col-button-yellow);
 }
 
-header-nav .large a {
+hexagonal-button.large button-top {
 	width: var(--button-width-large);
 	/* margin: var(--button-gap); */
 
-	font-size: 2.25em;
 }
