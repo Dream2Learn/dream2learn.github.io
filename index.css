@@ -149,6 +149,14 @@ logotype-details p {
 	margin: 0.25em 0;
 }
 
+logotype- .light {
+	margin-top: 0.5em;
+
+	font-style: italic;
+	opacity: 0.75;
+	font-size: 1.25em;
+}
+
 
 /* HEADER BUTTONS */
 
@@ -203,7 +211,9 @@ hexagonal-button {
 
 	filter: drop-shadow(0 0.5em 0.5em #0000007f);
 
-	transition: filter 0.2s var(--button-bounce-ease);
+	/* So that clicking outside of the <a> doesn't cause the shadow to recede */
+	/* Below, the `hexagonal-button > a` rule overrides this */
+	pointer-events: none;
 }
 
 hexagonal-button.large {
@@ -218,11 +228,25 @@ hexagonal-button > * {
 	transform: translate(0, -0.5em);
 }
 
+
+hexagonal-button {
+	transition: filter 0.2s ease;
+}
+
+hexagonal-button:hover {
+	filter: drop-shadow(0 0.75em 0.5em #0000007f);
+
+	transition: filter 0.2s var(--button-bounce-ease);
+}
+
 /* Animations that occur on :hover and :active */
 hexagonal-button:active {
 	filter: drop-shadow(0 0 0 #0000007f);
+
+	transition: filter 0.03s ease;
 }
 
+/* Notice: <a> does not move */
 hexagonal-button > button-top {
 	transition: transform 0.2s ease;
 }
@@ -267,6 +291,8 @@ hexagonal-button > a {
 	display: block;
 	width: 100%;
 	height: 100%;
+
+	pointer-events: auto;
 }
 
 hexagonal-button > button-top {
@@ -347,5 +373,11 @@ h2 > strong {
 }
 
 article p {
-	line-height: 1.5;
+	font-size: 1.2em;
+	line-height: 2;
+}
+
+
+nav {
+	position: fixed;
 }
