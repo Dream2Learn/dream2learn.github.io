@@ -3,12 +3,17 @@
 }
 
 :root {
+	scroll-padding-top: 6rem;
+	scroll-behavior: smooth;
+
 	--col-button-orange: #fca62b;
 	--col-button-yellow: #fcc250;
 	--col-blue: #283673;
 	--col-yellow: #f8dc3c;
 	--col-orange: #f0773a;
 	--col-red: #b02228;
+	--col-blue-shadow: #131742;
+	--col-blue-shadow-7f: #1317427f;
 
 	--font-heading: Zilla Slab, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
 	--font-large: Atkinson Hyperlegible, Overpass, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
@@ -72,17 +77,17 @@ body {
 main {
 	display: flex;
 	flex-flow: column;
-
-	padding-bottom: 5em;
 }
 
 header {
 	--gradient-height: 20vh;
 
 	min-height: 100vh;
-	padding-top: 10em;
+	padding-top: 10rem;
 	display: grid;
 	grid-template-rows: 1fr var(--gradient-height);
+
+	text-align: center;
 
 	/* #62ffff7f, #4cbfc97f */
 	background: /* temp */
@@ -144,12 +149,12 @@ logo- img {
 	width: 200px;
 }
 
-logo- h1 strong {
+logo- h1 > strong {
 	color: var(--col-yellow);
 }
 
 logo- > logo-details {
-	margin-top: 2rem;
+	margin-top: 1rem;
 
 	font-size: 1.5rem;
 	font-weight: 700;
@@ -165,7 +170,7 @@ logo-details strong {
 }
 
 logo-details p {
-	margin: 0.25em 0;
+	margin: 0.15em 0;
 }
 
 logo- .light {
@@ -222,6 +227,8 @@ header-nav > hexagonal-button {
 
 	/* Makes it so the positions determine the centers of the buttons */
 	transform: translate(-50%, -50%);
+
+	--shadow-color: var(--col-blue-shadow);
 }
 
 hexagonal-button {
@@ -237,7 +244,9 @@ hexagonal-button {
 	text-transform: uppercase;
 	text-decoration: none;
 
-	filter: drop-shadow(0 0.5em 0.5em #0000007f);
+	--shadow-color: var(--col-blue-shadow-7f);
+
+	filter: drop-shadow(0 0.5em 0.5em var(--shadow-color));
 
 	/* So that clicking outside of the <a> doesn't cause the shadow to recede */
 	/* Below, the `hexagonal-button > a` rule overrides this */
@@ -264,16 +273,18 @@ hexagonal-button {
 }
 
 hexagonal-button:hover {
-	filter: drop-shadow(0 0.75em 0.5em #0000007f);
+	filter: drop-shadow(0 0.75em 0.5em var(--shadow-color));
 
-	transition: filter 0.2s var(--button-bounce-ease);
+	transition-timing-function: var(--button-bounce-ease);
 }
 
 /* Animations that occur on :hover and :active */
-hexagonal-button:active {
-	filter: drop-shadow(0 0 0 #0000007f);
 
-	transition: filter 0.03s ease;
+hexagonal-button:active {
+	filter: drop-shadow(0 0 0 var(--shadow-color));
+
+	transition-duration: 0.03s;
+	transition-timing-function: ease;
 }
 
 /* Notice: <a> does not move */
@@ -285,14 +296,15 @@ hexagonal-button > a:hover + button-top {
 	/* Raised slightly */
 	transform: translate(0, -1em);
 
-	transition: transform 0.2s var(--button-bounce-ease);
+	transition-timing-function: var(--button-bounce-ease);
 }
 
 hexagonal-button > a:active + button-top {
 	/* Pressed down */
 	transform: translate(0, 0);
 
-	transition: transform 0.03s ease;
+	transition-duration: 0.03s;
+	transition-timing-function: ease;
 }
 
 /* This pseudoelement is the extrusion of each hexagonal button */
@@ -364,9 +376,14 @@ header-other scroll-indicator {
 
 	background: linear-gradient(#0000, var(--col-blue) 25%);
 	color: var(--col-yellow);
+
+	user-select: none;
+
+	transition: padding-top 0.5s var(--button-bounce-ease),
+			margin-bottom 0.5s var(--button-bounce-ease);
 }
 
-header-other scroll-indicator::after {
+header-other scroll-indicator::before {
 	content: "";
 
 	display: block;
@@ -381,11 +398,25 @@ header-other scroll-indicator::after {
 	background: var(--col-blue);
 }
 
+header-other scroll-indicator:hover {
+	--scroll-indicator-offset-bottom: 12vh;
+}
+
+header-other scroll-indicator a {
+	position: absolute;
+	width: 100%;
+	height: calc(100% + var(--scroll-indicator-offset-bottom));
+	top: 0;
+	left: 0;
+
+	transition: height 0.5s var(--button-bounce-ease);
+}
+
 
 /* ARTICLE */
 
 article {
-	margin: 0 8vw;
+	padding: 0 8vw;
 }
 
 h1 {
@@ -409,6 +440,41 @@ article p {
 	line-height: 2;
 }
 
+article p + h2 {
+	margin-top: 6rem;
+}
+
+
+/* FOOTER */
+
+footer {
+	padding: 2rem 8vw 6rem 8vw;
+	display: flex;
+	flex-flow: column;
+	align-items: start;
+
+	background: var(--col-blue);
+	color: #fff;
+}
+
+footer a {
+	color: var(--col-orange);
+}
+
+footer a:hover {
+	color: var(--col-yellow);
+}
+
+footer a:active {
+	opacity: 0.5;
+}
+
+footer > * {
+	line-height: 1.5;
+}
+
+
+/* NAVBAR */
 
 nav {
 	position: fixed;
@@ -426,7 +492,7 @@ nav {
 	text-align: center;
 	font-family: var(--font-large);
 
-	box-shadow: 0 -3.5em 4em 4em #000000bf;
+	box-shadow: 0 -3.5em 4em 4em var(--col-blue-shadow);
 	/* filter: drop-shadow(0 0 2em #000000af); */
 }
 
@@ -500,6 +566,13 @@ nav > link-rack a:hover {
 			0 0 0 4px var(--col-blue),
 			0 0 0 4px var(--col-blue),
 			0 0 0 8px;
+}
+
+nav > link-rack a:active {
+	box-shadow: 0 0 0 6px,
+			0 0 0 10px var(--col-blue),
+			0 0 0 10px var(--col-blue),
+			0 0 0 12px;
 }
 
 nav > link-rack a.strong {

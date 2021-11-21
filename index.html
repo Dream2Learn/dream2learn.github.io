@@ -11,14 +11,17 @@
 
 		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,700;1,700&family=Overpass:wght@700;900&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet" /> 
+		<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,700;1,700&family=Overpass:wght@700;900&family=Zilla+Slab:ital,wght@0,700;1,700&display=swap" rel="stylesheet" /> 
 	</head>
 
 	<body>
 		<main>
 			<header>
 				<header-other>
-					<scroll-indicator>Learn more</scroll-indicator>
+					<scroll-indicator>
+						<a href="#about"></a>
+						Scroll to<br />learn more
+					</scroll-indicator>
 				</header-other>
 
 				<header-main>
@@ -71,7 +74,7 @@
 						</hexagonal-button>
 
 						<hexagonal-button style="--n-shift-x: -1; --n-shift-y: 1; --n-large-to-small-shift-x: 1; --n-shift-small-x: 0;">
-							<a href="#"></a>
+							<a href="#contact"></a>
 							<button-top>Contact</button-top>
 						</hexagonal-button>
 
@@ -83,36 +86,49 @@
 				</header-main>
 			</header>
 
-			<article>
-				<h2>
-					Helping low-income students<br /><strong>succeed</strong>
-				</h2>
+			<article id="about">
+				<h2>Helping low-income students<br /><strong>succeed</strong></h2>
+				<p>No matter their economic background, students should have the opportunity to succeed in their education. We’ve made our program free and individualized to help students fulfill their academic potential.</p>
 
-				<p>No matter their economic background, students should have the opportunity to succeed in their education. We’ve designed our program to be free and individualized to help our students reach their goals and fulfill their academic potential.</p>
+				<h2><strong>Peer-to-peer</strong><br />instruction</h2>
+				<p>We do the thing</p>
+
+				<h2><strong>Twenty-five</strong><br />major courses</h2>
+				<p>With a focus on intuitive conceptualization, we help students with English, social studies, math, and science—including a multitude of Advanced Placement courses. We are able to tutor our students from 30 minutes up to an hour.</p>
 
 				<h2 id="reviews">Reviews</h2>
 			</article>
 
+			<footer>
+				<h2 id="contact">Contact us</h2>
+
+				Wayne, PA 19087
+
+				<a href="tel:13127929794">+1 (312) 792-9794</a>
+
+				<a href="mailto:dream2learninc@gmail.com">dream2learninc@gmail.com</a>
+			</footer>
+
 			<nav>
-				<a href="./">
+				<a href="#">
 					<logo->
 						<img src="./assets/logo.svg" alt="Dream2Learn logomark" />
-						<h1>Dream2Learn</h1>
+						<h1>Dream<strong>2</strong>Learn</h1>
 					</logo->
 				</a>
 
 				<link-rack>
 					<a href="#" class="strong">Find tutors</a>
 
-					<a href="#">Join us</a>
+					<a href="#">Join us!</a>
 
 					<a target="_blank" href="https://www.gofundme.com/f/free-online-tutoring-program-for-students">Donate</a>
 
-					<a href="#">About us</a>
+					<a href="./#about">About us</a>
 
-					<a href="#">Contact us</a>
+					<a href="#contact">Contact us</a>
 
-					<a href="#">Login as tutor</a>
+					<a href="#">Tutor login</a>
 				</link-rack>
 			</nav>
 		</main>
