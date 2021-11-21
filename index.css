@@ -2,16 +2,7 @@
 	box-sizing: border-box;
 }
 
-body {
-	/* width: 100vw; */
-	min-height: 100vh;
-	margin: 0;
-
-	font-family: Overpass, sans-serif;
-	font-weight: 700;
-
-	color: var(--col-blue);
-
+:root {
 	--col-button-orange: #fca62b;
 	--col-button-yellow: #fcc250;
 	--col-blue: #283673;
@@ -20,34 +11,7 @@ body {
 	--col-red: #b02228;
 
 	--header-font: Zilla Slab, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
-}
 
-main {
-	display: flex;
-	flex-flow: column;
-
-	padding-bottom: 5em;
-}
-
-main > header {
-	--gradient-height: 20vh;
-
-	min-height: 100vh;
-	padding-top: 6em;
-	display: grid;
-
-	/* #62ffff7f, #4cbfc97f */
-	background: /* temp */
-			linear-gradient(#0000 calc(100vh - var(--gradient-height)), #fff),
-			linear-gradient(var(--col-blue) calc(100vh - var(--gradient-height)), #62ffff);
-	color: #fff;
-}
-
-header-content {
-	margin: 0 15vw;
-	display: grid;
-	grid-template-rows: 1fr var(--gradient-height);
-	grid-template-columns: repeat(2, 1fr);
 
 	/* M 140,0 0,94 V 179 l 140,94 140,-94 V 94 Z */
 	/* width = 280; height = 273 */
@@ -79,22 +43,45 @@ header-content {
 
 	--button-width-large: 200px;
 	--button-height-large: calc(var(--button-width-large) / var(--button-aspect-ratio));
-	--button-gap: 30px;
 
 	/* shift for a small button to be positioned properly amid a group of large buttons */
 	--button-large-to-small-shift-height: calc((var(--button-height-large) - var(--button-height)) / 2);
 	--button-large-to-small-shift-width: calc((var(--button-width-large) - var(--button-width)) / 2);
 
-	/* sine of slant angle, to account for gap being at an angle when shifting vertically */
-	--button-slant-sine-fac: 0.83022113; /* = sin(atan(140 / 94)) */
-
-	--button-shift-width-large: calc(var(--button-width-large) + var(--button-gap));
-	--button-shift-height-large: calc(var(--button-height-large) + var(--button-gap) * var(--button-slant-sine-fac) * 1.5); /* why 1.5? */
-
-	--button-shift-width: calc(var(--button-width) + var(--button-gap));
-
-
 	--button-bounce-ease: cubic-bezier(0, 1.82, 0.76, 1);
+}
+
+body {
+	/* width: 100vw; */
+	min-height: 100vh;
+	margin: 0;
+
+	font-family: Overpass, sans-serif;
+	font-weight: 700;
+
+	color: var(--col-blue);
+}
+
+main {
+	display: flex;
+	flex-flow: column;
+
+	padding-bottom: 5em;
+}
+
+header {
+	--gradient-height: 20vh;
+
+	min-height: 100vh;
+	padding-top: 6em;
+	display: grid;
+	grid-template-rows: 1fr var(--gradient-height);
+
+	/* #62ffff7f, #4cbfc97f */
+	background: /* temp */
+			linear-gradient(0turn, #fff, #0000 var(--gradient-height)),
+			linear-gradient(0turn, #62ffff, var(--col-blue) var(--gradient-height));
+	color: #fff;
 
 	
 	--arrow-clip-path: polygon(
@@ -103,16 +90,37 @@ header-content {
 		100% 0);
 }
 
+header-main {
+	/* margin: 0 15vw; */
+	padding: 0 4em 2em 4em;
+	display: grid;
+	grid-template-columns: 1fr minmax(3em, 8vw) 1fr;
+
+	--button-gap: 30px;
+
+	/* sine of slant angle, to account for gap being at an angle when shifting vertically */
+	--button-slant-sine-fac: 0.83022113; /* = sin(atan(140 / 94)) */
+
+	--button-shift-width-large: calc(var(--button-width-large) + var(--button-gap));
+	--button-shift-height-large: calc(var(--button-height-large) + var(--button-gap) * var(--button-slant-sine-fac) * 1.5); /* why 1.5? */
+
+	--button-shift-width: calc(var(--button-width) + var(--button-gap));
+}
+
 
 /* LOGOTYPE */
 
-header-content > logotype- {
+header-main > logotype- {
 	grid-area: 1 / 1;
+	justify-self: right;
+}
 
+logotype- {
 	display: flex;
 	flex-flow: column;
 	align-items: center;
 	justify-content: center;
+	width: max-content; /* prevent lines from breaking when screen is too small */
 }
 
 logotype- img {
@@ -161,18 +169,24 @@ logotype- .light {
 /* HEADER BUTTONS */
 
 header-nav {
-	grid-area: 1 / 2;
+	grid-area: 1 / 3;
+	justify-self: left;
+
+	/* approximations since buttons are positioned absolutely. These formulas are dervided from just testing in the browser to fit the buttons */
+	/* width: calc(
+			1.5 * var(--button-shift-width-large)
+			+ var(--button-shift-width));
+	margin-left: calc(0.5 * var(--button-width)); */
+
+	/* width = 2 × dist(right edge of buttons, container center) */
+	width: calc(var(--button-shift-width-large) + var(--button-shift-width) - var(--button-gap));
+	/* margin-left = width of button rows − width */
+	margin-left: var(--button-width);
 
 	position: relative;
 }
 
-header-nav > expander- {
-	display: block;
-	width: calc(2 * var(--button-width-large));
-	visibility: hidden;
-}
-
-header-nav > :where(hexagonal-button, a) {
+header-nav > hexagonal-button {
 	position: absolute;
 
 	/* Variables that position the hexagonal buttons in a tesselating pattern */
@@ -199,6 +213,7 @@ header-nav > :where(hexagonal-button, a) {
 
 hexagonal-button {
 	display: grid;
+	width: var(--button-width);
 
 	color: var(--col-blue);
 
@@ -217,6 +232,8 @@ hexagonal-button {
 }
 
 hexagonal-button.large {
+	width: var(--button-width-large);
+
 	font-size: 2.25em;
 }
 
@@ -289,8 +306,6 @@ hexagonal-button > :where(a, button-top) {
 
 hexagonal-button > a {
 	display: block;
-	width: 100%;
-	height: 100%;
 
 	pointer-events: auto;
 }
@@ -299,7 +314,6 @@ hexagonal-button > button-top {
 	display: grid;
 	place-items: center;
 	text-align: center;
-	width: var(--button-width);
 
 	background: var(--col-button-orange);
 
@@ -311,22 +325,22 @@ hexagonal-button.strong button-top {
 	background: var(--col-button-yellow);
 }
 
-hexagonal-button.large button-top {
-	width: var(--button-width-large);
+ 
+header > header-other {
+	grid-area: 2 / 1;
 }
 
-
-header-content > header-other {
-	grid-area: 1/1 / 3/3;
-	
+header-other {
 	display: flex;
 	align-items: end;
 	justify-content: center;
 }
 
 header-other scroll-down {
-	padding: 3em 1em 0 1em;
-	margin-bottom: 15vh;
+	--scroll-down-offset-bottom: 15vh;
+
+	padding: calc(var(--gradient-height) - var(--scroll-down-offset-bottom)) 1em 0 1em;
+	margin-bottom: var(--scroll-down-offset-bottom);
 	position: relative;
 
 	font-size: 1.5rem;
