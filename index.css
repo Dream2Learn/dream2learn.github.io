@@ -10,7 +10,9 @@
 	--col-orange: #f0773a;
 	--col-red: #b02228;
 
-	--header-font: Zilla Slab, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
+	--font-heading: Zilla Slab, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
+	--font-large: Atkinson Hyperlegible, Overpass, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
+	--font-body: Overpass, sans-serif;
 
 
 	/* M 140,0 0,94 V 179 l 140,94 140,-94 V 94 Z */
@@ -61,7 +63,7 @@ body {
 
 	min-width: 1050px;
 
-	font-family: Overpass, sans-serif;
+	font-family: var(--font-body);
 	font-weight: 700;
 
 	color: var(--col-blue);
@@ -132,6 +134,10 @@ header-main > logo- {
 header-main > logo- h1 {
 	font-size: 4em;
 	margin: 0;
+}
+
+logo- {
+	font-family: var(--font-large);
 }
 
 logo- img {
@@ -343,13 +349,14 @@ header-other {
 	justify-content: center;
 }
 
-header-other scroll-down {
-	--scroll-down-offset-bottom: 15vh;
+header-other scroll-indicator {
+	--scroll-indicator-offset-bottom: 15vh;
 
-	padding: calc(var(--gradient-height) - var(--scroll-down-offset-bottom)) 1em 0 1em;
-	margin-bottom: var(--scroll-down-offset-bottom);
+	padding: calc(var(--gradient-height) - var(--scroll-indicator-offset-bottom)) 1em 0 1em;
+	margin-bottom: var(--scroll-indicator-offset-bottom);
 	position: relative;
 
+	font-family: var(--font-large);
 	font-size: 1.5rem;
 	letter-spacing: 0.05em;
 	font-style: italic;
@@ -359,7 +366,7 @@ header-other scroll-down {
 	color: var(--col-yellow);
 }
 
-header-other scroll-down::after {
+header-other scroll-indicator::after {
 	content: "";
 
 	display: block;
@@ -382,11 +389,11 @@ article {
 }
 
 h1 {
-	font-family: var(--header-font);
+	font-family: var(--font-heading);
 }
 
 h2 {
-	font-family: var(--header-font);
+	font-family: var(--font-heading);
 	font-size: 3rem;
 	text-transform: uppercase;
 }
@@ -408,14 +415,18 @@ nav {
 	width: 100%;
 	height: 4em;
 	display: flex;
-	align-items: center;
+	align-items: stretch;
 	justify-content: space-evenly;
-	padding: 0 8em;
+	/* padding: 0 4em; */
+
 	
 	background: var(--col-blue);
-	color: #fff;
 
-	box-shadow: 0 -4em 4em 4em #000000bf;
+	color: #fff;
+	text-align: center;
+	font-family: var(--font-large);
+
+	box-shadow: 0 -3.5em 4em 4em #000000bf;
 	/* filter: drop-shadow(0 0 2em #000000af); */
 }
 
@@ -424,11 +435,12 @@ nav logo- {
 
 	display: flex;
 	align-items: center;
+	height: 100%;
 }
 
 nav logo- img {
 	height: var(--logomark-height);
-	width: 100%;
+	width: calc(var(--logomark-height) * var(--button-width-fac) / var(--logomark-height-fac));
 	transform: translate(0, 0.3em);
 	z-index: 1; /* to appear in front of point */
 }
@@ -458,12 +470,38 @@ nav a {
 	text-decoration: inherit;
 }
 
-nav a:not(:first-child) {
+nav > link-rack {
+	display: flex;
+	align-items: center;
+	margin: 0 1em;
+	padding: 0 1em;
+	overflow-x: auto;
+}
+
+nav > link-rack a {
+	padding: 0 1em;
+	margin: 0 0.5em;
+
 	color: var(--col-yellow);
 	letter-spacing: 0.02em;
 	/* text-transform: uppercase; */
+
+	border-radius: 1em;
+	box-shadow: 0 0 0 0,
+		0 0 0 12px #0000,
+		0 0 0 14px #0000,
+			0 0 0 18px #0000;
+	
+	transition: box-shadow 0.5s cubic-bezier(0.15, 1.84, 0.6, 0.9);
 }
 
-nav a.strong {
+nav > link-rack a:hover {
+	box-shadow: 0 0 0 2px,
+			0 0 0 4px var(--col-blue),
+			0 0 0 4px var(--col-blue),
+			0 0 0 8px;
+}
+
+nav > link-rack a.strong {
 	color: var(--col-orange);
 }
