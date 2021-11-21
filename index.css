@@ -49,12 +49,17 @@
 	--button-large-to-small-shift-width: calc((var(--button-width-large) - var(--button-width)) / 2);
 
 	--button-bounce-ease: cubic-bezier(0, 1.82, 0.76, 1);
+
+	--logomark-height-fac: 226;
+	--logomark-to-button-ratio: calc(var(--logomark-height-fac) / var(--button-height-fac));
 }
 
 body {
 	/* width: 100vw; */
 	min-height: 100vh;
 	margin: 0;
+
+	min-width: 1050px;
 
 	font-family: Overpass, sans-serif;
 	font-weight: 700;
@@ -73,7 +78,7 @@ header {
 	--gradient-height: 20vh;
 
 	min-height: 100vh;
-	padding-top: 6em;
+	padding-top: 10em;
 	display: grid;
 	grid-template-rows: 1fr var(--gradient-height);
 
@@ -94,7 +99,11 @@ header-main {
 	/* margin: 0 15vw; */
 	padding: 0 4em 2em 4em;
 	display: grid;
-	grid-template-columns: 1fr minmax(3em, 8vw) 1fr;
+	grid-template-columns: 1fr minmax(2em, 8vw) 1fr;
+
+	width: auto;
+	place-self: center;
+	justify-items: center;
 
 	--button-gap: 30px;
 
@@ -110,12 +119,9 @@ header-main {
 
 /* LOGOTYPE */
 
-header-main > logotype- {
+header-main > logo- {
 	grid-area: 1 / 1;
-	justify-self: right;
-}
 
-logotype- {
 	display: flex;
 	flex-flow: column;
 	align-items: center;
@@ -123,21 +129,20 @@ logotype- {
 	width: max-content; /* prevent lines from breaking when screen is too small */
 }
 
-logotype- img {
-	width: 200px;
-}
-
-logotype- h1 {
-	font-family: var(--header-font);
+header-main > logo- h1 {
 	font-size: 4em;
 	margin: 0;
 }
 
-logotype- h1 strong {
+logo- img {
+	width: 200px;
+}
+
+logo- h1 strong {
 	color: var(--col-yellow);
 }
 
-logotype- > logotype-details {
+logo- > logo-details {
 	margin-top: 2rem;
 
 	font-size: 1.5rem;
@@ -147,17 +152,17 @@ logotype- > logotype-details {
 	color: var(--col-yellow);
 }
 
-logotype-details strong {
+logo-details strong {
 	font-weight: 900;
 	text-transform: uppercase;
 	font-size: 2rem;
 }
 
-logotype-details p {
+logo-details p {
 	margin: 0.25em 0;
 }
 
-logotype- .light {
+logo- .light {
 	margin-top: 0.5em;
 
 	font-style: italic;
@@ -170,7 +175,9 @@ logotype- .light {
 
 header-nav {
 	grid-area: 1 / 3;
-	justify-self: left;
+
+	display: grid;
+	align-items: start;
 
 	/* approximations since buttons are positioned absolutely. These formulas are dervided from just testing in the browser to fit the buttons */
 	/* width: calc(
@@ -374,6 +381,10 @@ article {
 	margin: 0 8vw;
 }
 
+h1 {
+	font-family: var(--header-font);
+}
+
 h2 {
 	font-family: var(--header-font);
 	font-size: 3rem;
@@ -394,4 +405,65 @@ article p {
 
 nav {
 	position: fixed;
+	width: 100%;
+	height: 4em;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	padding: 0 8em;
+	
+	background: var(--col-blue);
+	color: #fff;
+
+	box-shadow: 0 -4em 4em 4em #000000bf;
+	/* filter: drop-shadow(0 0 2em #000000af); */
+}
+
+nav logo- {
+	--logomark-height: 3em;
+
+	display: flex;
+	align-items: center;
+}
+
+nav logo- img {
+	height: var(--logomark-height);
+	width: 100%;
+	transform: translate(0, 0.3em);
+	z-index: 1; /* to appear in front of point */
+}
+
+nav logo- h1 {
+	margin: 0;
+	margin-left: 0.75em;
+	letter-spacing: 0.02em;
+}
+
+/* point that peeks out under the logomark */
+nav logo-::before {
+	content: " ";
+
+	width: calc(var(--logomark-height) * var(--button-aspect-ratio) / var(--logomark-to-button-ratio));
+	position: absolute;
+	bottom: -1em;
+	aspect-ratio: var(--button-width-fac) / var(--button-height-fac);
+
+	background: var(--col-blue);
+
+	clip-path: var(--button-clip-path);
+}
+
+nav a {
+	color: inherit;
+	text-decoration: inherit;
+}
+
+nav a:not(:first-child) {
+	color: var(--col-yellow);
+	letter-spacing: 0.02em;
+	/* text-transform: uppercase; */
+}
+
+nav a.strong {
+	color: var(--col-orange);
 }
