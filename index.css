@@ -84,9 +84,9 @@ header {
 	--gradient-height: 20vh;
 
 	min-height: 100vh;
-	padding-top: 10rem;
+	/* padding-top: 10rem; */
 	display: grid;
-	grid-template-rows: 1fr var(--gradient-height);
+	grid-template-rows: 10rem 1fr var(--gradient-height);
 
 	text-align: center;
 
@@ -104,6 +104,7 @@ header {
 }
 
 header-main {
+	grid-area: 2 / 1;
 	/* margin: 0 15vw; */
 	padding: 0 4em 2em 4em;
 	display: grid;
@@ -135,6 +136,8 @@ header-main > logo- {
 	align-items: center;
 	justify-content: center;
 	width: max-content; /* prevent lines from breaking when screen is too small */
+
+	z-index: 1;
 }
 
 header-main logo- h1 {
@@ -165,7 +168,7 @@ logo- h1 > strong {
 	color: var(--col-yellow);
 }
 
-logo- > logo-details {
+logo- > elevator-pitch {
 	margin-top: 1rem;
 
 	font-size: 1.5rem;
@@ -175,13 +178,13 @@ logo- > logo-details {
 	color: var(--col-yellow);
 }
 
-logo-details strong {
+elevator-pitch strong {
 	font-weight: 900;
 	text-transform: uppercase;
 	font-size: 2rem;
 }
 
-logo-details p {
+elevator-pitch p {
 	margin: 0.15em 0;
 }
 
@@ -380,7 +383,7 @@ hexagonal-button.strong button-top {
 
  
 header > header-other {
-	grid-area: 2 / 1;
+	grid-area: 3 / 1;
 }
 
 header-other {
@@ -392,7 +395,7 @@ header-other {
 header-other scroll-indicator {
 	--scroll-indicator-offset-bottom: 15vh;
 
-	padding: calc(var(--gradient-height) - var(--scroll-indicator-offset-bottom)) 1em 0 1em;
+	padding: calc(var(--gradient-height) - var(--scroll-indicator-offset-bottom) + 2em) 1em 0 1em;
 	margin-bottom: var(--scroll-indicator-offset-bottom);
 	position: relative;
 
@@ -402,7 +405,7 @@ header-other scroll-indicator {
 	font-style: italic;
 	text-transform: lowercase;
 
-	background: linear-gradient(#0000, var(--col-blue) 25%);
+	background: linear-gradient(#0000, var(--col-blue) 50%);
 	color: var(--col-yellow);
 
 	user-select: none;
@@ -443,6 +446,27 @@ header-other scroll-indicator a {
 	left: 0;
 
 	transition: height 0.5s var(--button-bounce-ease);
+}
+
+
+header > header-media {
+	grid-area: 1/1 / 4/1;
+
+	background: url("./assets/header-mesh.svg");
+	mix-blend-mode: screen;
+	opacity: 0.125;
+
+	animation: header-pattern-slide 12s infinite linear;
+}
+
+@keyframes header-pattern-slide {
+	0% {
+		background-position: 0 0;
+	}
+
+	100% {
+		background-position: -280px 0;
+	}
 }
 
 
@@ -492,10 +516,10 @@ footer {
 
 footer section {
 	display: flex;
+	gap: 4em;
 }
 
 footer section > * {
-	margin-right: 4em;
 	display: flex;
 	flex-flow: column;
 	align-items: start;
@@ -538,6 +562,8 @@ nav {
 
 	box-shadow: 0 -3.5em 4em 4em var(--col-blue-shadow);
 	/* filter: drop-shadow(0 0 2em #000000af); */
+
+	z-index: 1;
 }
 
 nav logo- {
