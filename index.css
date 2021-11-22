@@ -69,7 +69,7 @@ body {
 	min-width: 1050px;
 
 	font-family: var(--font-body);
-	font-weight: 700;
+	font-weight: 600;
 
 	color: var(--col-blue);
 }
@@ -272,11 +272,16 @@ hexagonal-button {
 	transition: filter 0.2s ease;
 }
 
-hexagonal-button:hover {
+hexagonal-button:where(:hover, :focus-within) {
 	filter: drop-shadow(0 0.75em 0.5em var(--shadow-color));
 
 	transition-timing-function: var(--button-bounce-ease);
 }
+
+/* hexagonal-button:focus-within:focus-visible {
+	outline: 4px dashed #fff;
+	outline-offset: 4px;
+} */
 
 /* Animations that occur on :hover and :active */
 
@@ -292,7 +297,7 @@ hexagonal-button > button-top {
 	transition: transform 0.2s ease;
 }
 
-hexagonal-button > a:hover + button-top {
+hexagonal-button > a:where(:hover, :focus-visible) + button-top {
 	/* Raised slightly */
 	transform: translate(0, -1em);
 
@@ -398,9 +403,14 @@ header-other scroll-indicator::before {
 	background: var(--col-blue);
 }
 
-header-other scroll-indicator:hover {
+header-other scroll-indicator:where(:hover, :focus-within) {
 	--scroll-indicator-offset-bottom: 12vh;
 }
+
+/* header-other scroll-indicator:focus-within {
+	outline: 4px dashed var(--col-yellow);
+	outline-offset: 4px;
+} */
 
 header-other scroll-indicator a {
 	position: absolute;
@@ -457,11 +467,22 @@ footer {
 	color: #fff;
 }
 
+footer section {
+	display: flex;
+}
+
+footer section > * {
+	margin-right: 4em;
+	display: flex;
+	flex-flow: column;
+	align-items: start;
+}
+
 footer a {
 	color: var(--col-orange);
 }
 
-footer a:hover {
+footer a:where(:hover, :focus-visible) {
 	color: var(--col-yellow);
 }
 
@@ -542,6 +563,8 @@ nav > link-rack {
 	margin: 0 1em;
 	padding: 0 1em;
 	overflow-x: auto;
+
+	white-space: nowrap;
 }
 
 nav > link-rack a {
@@ -561,7 +584,7 @@ nav > link-rack a {
 	transition: box-shadow 0.5s cubic-bezier(0.15, 1.84, 0.6, 0.9);
 }
 
-nav > link-rack a:hover {
+nav > link-rack a:where(:hover, :focus-visible) {
 	box-shadow: 0 0 0 2px,
 			0 0 0 4px var(--col-blue),
 			0 0 0 4px var(--col-blue),
