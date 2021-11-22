@@ -8,6 +8,7 @@
 
 	--col-button-orange: #fca62b;
 	--col-button-yellow: #fcc250;
+	--col-button-yellow-light: #fff1b1;
 	--col-blue: #283673;
 	--col-yellow: #f8dc3c;
 	--col-orange: #f0773a;
@@ -124,7 +125,7 @@ header-main {
 }
 
 
-/* LOGOTYPE */
+/* LOGO */
 
 header-main > logo- {
 	grid-area: 1 / 1;
@@ -136,16 +137,27 @@ header-main > logo- {
 	width: max-content; /* prevent lines from breaking when screen is too small */
 }
 
-header-main > logo- h1 {
+header-main logo- h1 {
 	font-size: 4em;
 	margin: 0;
 }
+
+header-main logo- .logomark {
+	animation: logomark-bob 2s ease-in-out infinite alternate;
+}
+
+@keyframes logomark-bob {
+	100% {
+		transform: translate(0, -2em);
+	}
+}
+
 
 logo- {
 	font-family: var(--font-large);
 }
 
-logo- img {
+logo- .logomark {
 	width: 200px;
 }
 
@@ -278,11 +290,6 @@ hexagonal-button:where(:hover, :focus-within) {
 	transition-timing-function: var(--button-bounce-ease);
 }
 
-/* hexagonal-button:focus-within:focus-visible {
-	outline: 4px dashed #fff;
-	outline-offset: 4px;
-} */
-
 /* Animations that occur on :hover and :active */
 
 hexagonal-button:active {
@@ -302,6 +309,21 @@ hexagonal-button > a:where(:hover, :focus-visible) + button-top {
 	transform: translate(0, -1em);
 
 	transition-timing-function: var(--button-bounce-ease);
+}
+
+/* workaround since :focus-visible cannot be used on the hexagonal-button itself */
+hexagonal-button > a:focus-visible + button-top {
+	animation: button-pulsate 0.5s ease-in-out alternate infinite;
+}
+
+@keyframes button-pulsate {
+	0% {
+		background: var(--col-button-yellow-light);
+	}
+
+	100% {
+		background: var(--col-orange);
+	}
 }
 
 hexagonal-button > a:active + button-top {
@@ -344,6 +366,7 @@ hexagonal-button > button-top {
 	display: grid;
 	place-items: center;
 	text-align: center;
+	width: inherit; /* prevents enlarging due to text overflow */
 
 	background: var(--col-button-orange);
 
@@ -407,10 +430,10 @@ header-other scroll-indicator:where(:hover, :focus-within) {
 	--scroll-indicator-offset-bottom: 12vh;
 }
 
-/* header-other scroll-indicator:focus-within {
+header-other scroll-indicator a:focus-visible {
 	outline: 4px dashed var(--col-yellow);
 	outline-offset: 4px;
-} */
+} 
 
 header-other scroll-indicator a {
 	position: absolute;
@@ -500,7 +523,7 @@ footer > * {
 nav {
 	position: fixed;
 	width: 100%;
-	height: 4em;
+	height: 3em;
 	display: flex;
 	align-items: stretch;
 	justify-content: space-evenly;
@@ -525,7 +548,7 @@ nav logo- {
 	height: 100%;
 }
 
-nav logo- img {
+nav logo- .logomark {
 	height: var(--logomark-height);
 	width: calc(var(--logomark-height) * var(--button-width-fac) / var(--logomark-height-fac));
 	transform: translate(0, 0.3em);
@@ -534,7 +557,9 @@ nav logo- img {
 
 nav logo- h1 {
 	margin: 0;
-	margin-left: 0.75em;
+	margin-left: 0.5em;
+	padding: 0 0.25em;
+
 	letter-spacing: 0.02em;
 }
 
@@ -576,6 +601,14 @@ nav > link-rack a {
 	/* text-transform: uppercase; */
 
 	border-radius: 1em;
+}
+
+nav > link-rack a.strong {
+	color: var(--col-orange);
+}
+
+nav > link-rack a,
+nav > a logo- h1 {
 	box-shadow: 0 0 0 0,
 		0 0 0 12px #0000,
 		0 0 0 14px #0000,
@@ -584,20 +617,18 @@ nav > link-rack a {
 	transition: box-shadow 0.5s cubic-bezier(0.15, 1.84, 0.6, 0.9);
 }
 
-nav > link-rack a:where(:hover, :focus-visible) {
+nav > link-rack a:where(:hover, :focus-visible),
+nav > a:where(:hover, :focus-visible) logo- h1 {
 	box-shadow: 0 0 0 2px,
 			0 0 0 4px var(--col-blue),
 			0 0 0 4px var(--col-blue),
 			0 0 0 8px;
 }
 
-nav > link-rack a:active {
+nav > link-rack a:active,
+nav > a:active logo- h1 {
 	box-shadow: 0 0 0 6px,
 			0 0 0 10px var(--col-blue),
 			0 0 0 10px var(--col-blue),
 			0 0 0 12px;
-}
-
-nav > link-rack a.strong {
-	color: var(--col-orange);
 }
