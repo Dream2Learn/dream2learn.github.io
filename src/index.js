@@ -2,7 +2,7 @@ const qs = selector => document.querySelector(selector);
 
 const observer = new IntersectionObserver(([entry], observer) => {
 	if (entry.intersectionRatio > 0.5) {
-		// Header is shown
+		// Header is shown!
 	} else {
 		// Header is hidden
 	}
