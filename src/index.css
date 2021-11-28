@@ -108,7 +108,7 @@ header {
 header-main {
 	grid-area: 2 / 1;
 	/* margin: 0 15vw; */
-	padding: 0 4em 2em 4em;
+	padding: 0 4em 1em 4em;
 	display: grid;
 	grid-template-columns: 1fr minmax(2em, 8vw) 1fr;
 
@@ -484,14 +484,14 @@ header-media > :where(header-mesh-top, header-mesh-bottom) {
 header-media > header-mesh-top {
 	grid-row: 1;
 
-	background: url("./assets/header-mesh-2.svg");
+	background: url("./assets/header-mesh.svg");
 	background-position-y: 100%;
 }
 
 header-media > header-mesh-bottom {
 	grid-row: 2;
 
-	background: url("./assets/header-mesh-bottom-2.svg");
+	background: url("./assets/header-mesh-bottom.svg");
 	background-repeat: repeat-x;
 }
 
