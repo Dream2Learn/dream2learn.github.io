@@ -136,6 +136,8 @@ header-main > logo- {
 	justify-content: center;
 	width: max-content; /* prevent lines from breaking when screen is too small */
 
+	text-shadow: 0 4px 16px var(--col-blue-shadow);
+
 	z-index: 1;
 }
 
@@ -145,6 +147,8 @@ header-main logo- h1 {
 }
 
 header-main logo- .logomark {
+	filter: drop-shadow(0 4px 16px var(--col-blue-shadow));
+
 	animation: logomark-bob 2s ease-in-out infinite alternate;
 }
 
@@ -392,7 +396,7 @@ header-other {
 }
 
 header-other scroll-indicator {
-	--scroll-indicator-offset-bottom: 12vh;
+	--scroll-indicator-offset-bottom: 14vh;
 
 	padding: calc(var(--gradient-height) - var(--scroll-indicator-offset-bottom) + 2em) 1em 0 1em;
 	margin-bottom: var(--scroll-indicator-offset-bottom);
@@ -429,7 +433,7 @@ header-other scroll-indicator::before {
 }
 
 header-other scroll-indicator:where(:hover, :focus-within) {
-	--scroll-indicator-offset-bottom: 10vh;
+	--scroll-indicator-offset-bottom: 11vh;
 }
 
 header-other scroll-indicator a:focus-visible {
@@ -472,6 +476,7 @@ header-media > header-solid {
 	/* #62ffff7f, #4cbfc97f */
 	background: linear-gradient(0turn, #62ffff, var(--col-blue) var(--gradient-height));
 	mask-image: linear-gradient(0turn, #0000, #000 var(--gradient-height));
+	-webkit-mask-image: linear-gradient(0turn, #0000, #000 var(--gradient-height));
 }
 
 header-media > img {
