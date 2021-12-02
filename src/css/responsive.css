@@ -1,0 +1,26 @@
+@media (max-height: 800px) {
+	/* header-other scroll-indicator {
+		display: none;
+	} */
+}
+
+@media (max-width: 1375px),
+		(max-height: 900px) {
+	header {
+		--responsive-font-scale-factor: 0.75;
+
+		font-size: calc(1em * var(--responsive-font-scale-factor));
+
+		--header-padding-top: 8rem;
+	}
+
+	header-main {
+		--button-width: calc(115px * var(--responsive-font-scale-factor));
+		--button-width-large: calc(200px * var(--responsive-font-scale-factor));
+		--button-gap: calc(30px * var(--responsive-font-scale-factor));
+
+		/* Need to repeat in Firefox (assuming an engine bug?) */
+		--button-height: calc(var(--button-width) / var(--button-aspect-ratio));
+		--button-height-large: calc(var(--button-width-large) / var(--button-aspect-ratio));
+	}
+}

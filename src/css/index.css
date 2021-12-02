@@ -3,13 +3,14 @@
 }
 
 :root {
-	scroll-padding-top: 6rem;
+	scroll-padding-top: 4rem;
 	scroll-behavior: smooth;
 
 	--col-button-orange: #fca62b;
 	--col-button-yellow: #fcc250;
 	--col-button-yellow-light: #fff1b1;
 	--col-blue: #283673;
+	--col-blue-lighter: #374a9e;
 	--col-yellow: #f8dc3c;
 	--col-orange: #f0773a;
 	--col-red: #b02228;
@@ -52,14 +53,9 @@
 	--button-width-large: 200px;
 	--button-height-large: calc(var(--button-width-large) / var(--button-aspect-ratio));
 
-	/* shift for a small button to be positioned properly amid a group of large buttons */
-	--button-large-to-small-shift-height: calc((var(--button-height-large) - var(--button-height)) / 2);
-	--button-large-to-small-shift-width: calc((var(--button-width-large) - var(--button-width)) / 2);
-
 	--button-bounce-ease: cubic-bezier(0, 1.82, 0.76, 1);
 
 	--logomark-height-fac: 226;
-	--logomark-to-button-ratio: calc(var(--logomark-height-fac) / var(--button-height-fac));
 }
 
 body {
@@ -67,7 +63,7 @@ body {
 	min-height: 100vh;
 	margin: 0;
 
-	min-width: 1050px;
+	/* min-width: 1050px; */
 
 	font-family: var(--font-body);
 	font-weight: 600;
@@ -82,17 +78,19 @@ main {
 	position: absolute;
 
 	background: #fcfeff;
-	background-image: url("./assets/side-mesh.svg");
+	background-image: url("../assets/side-mesh.svg");
 	background-repeat: repeat-y;
 }
 
 header {
 	--gradient-height: 25vh;
 
+	--header-padding-top: 10rem;
+
 	min-height: 100vh;
 	/* padding-top: 10rem; */
 	display: grid;
-	grid-template-rows: 10rem 1fr var(--gradient-height);
+	grid-template-rows: var(--header-padding-top) 1fr var(--gradient-height);
 
 	text-align: center;
 	color: #fff;
@@ -122,6 +120,10 @@ header-main {
 
 	--button-shift-width-large: calc(var(--button-width-large) + var(--button-gap));
 	--button-shift-height-large: calc(var(--button-height-large) + var(--button-gap) * var(--button-slant-sine-fac) * 1.5); /* why 1.5? */
+
+	/* shift for a small button to be positioned properly amid a group of large buttons */
+	--button-large-to-small-shift-height: calc((var(--button-height-large) - var(--button-height)) / 2);
+	--button-large-to-small-shift-width: calc((var(--button-width-large) - var(--button-width)) / 2);
 
 	--button-shift-width: calc(var(--button-width) + var(--button-gap));
 }
@@ -166,7 +168,8 @@ logo- {
 }
 
 logo- .logomark {
-	width: 200px;
+	/* 200px by default */
+	width: 12.5em;
 }
 
 logo- h1 > strong {
@@ -476,7 +479,7 @@ header-media > header-solid {
 	height: 100%;
 
 	/* #62ffff7f, #4cbfc97f */
-	background: linear-gradient(0turn, #62ffff, var(--col-blue) var(--gradient-height));
+	background: linear-gradient(0turn, #62ffff, var(--col-blue-lighter) var(--gradient-height), var(--col-blue) 50%);
 	mask-image: linear-gradient(0turn, #0000, #000 var(--gradient-height));
 	-webkit-mask-image: linear-gradient(0turn, #0000, #000 var(--gradient-height));
 }
@@ -504,14 +507,14 @@ header-media > :where(header-mesh-top, header-mesh-bottom) {
 header-media > header-mesh-top {
 	grid-row: 1;
 
-	background: url("./assets/header-mesh.svg");
+	background: url("../assets/header-mesh.svg");
 	background-position-y: 100%;
 }
 
 header-media > header-mesh-bottom {
 	grid-row: 2;
 
-	background: url("./assets/header-mesh-bottom.svg");
+	background: url("../assets/header-mesh-bottom.svg");
 	background-repeat: repeat-x;
 }
 
@@ -649,7 +652,7 @@ nav logo- h1 {
 nav logo-::before {
 	content: " ";
 
-	width: calc(var(--logomark-height) * var(--button-aspect-ratio) / var(--logomark-to-button-ratio));
+	width: calc(var(--logomark-height) * var(--button-width-fac) / var(--logomark-height-fac));
 	position: absolute;
 	bottom: -1em;
 	aspect-ratio: var(--button-width-fac) / var(--button-height-fac);
@@ -720,7 +723,7 @@ mesh-background {
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	/* background: url("./assets/header-mesh.svg"); */
+	/* background: url("../assets/header-mesh.svg"); */
 
 	pointer-events: none;
 }
