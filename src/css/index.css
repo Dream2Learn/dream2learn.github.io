@@ -58,18 +58,6 @@
 	--logomark-height-fac: 226;
 }
 
-a {
-	color: var(--col-orange);
-}
-
-a:where(:hover, :focus-visible) {
-	color: var(--col-yellow);
-}
-
-a:active {
-	color: var(--col-red);
-}
-
 body {
 	/* width: 100vw; */
 	min-height: 100vh;
@@ -94,8 +82,20 @@ main {
 	background-repeat: repeat-y;
 }
 
+main a {
+	color: var(--col-orange);
+}
+
+main a:where(:hover, :focus-visible) {
+	color: var(--col-yellow);
+}
+
+main a:active {
+	color: var(--col-red);
+}
+
 header {
-	--gradient-height: 25vh;
+	--gradient-height: max(150px, 25vh);
 
 	--header-padding-top: 10rem;
 
@@ -582,6 +582,7 @@ footer {
 	align-items: start;
 
 	background: var(--col-blue);
+	background-image: url("../assets/header-mesh.svg");
 	color: #fff;
 }
 
