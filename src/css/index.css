@@ -10,7 +10,7 @@
 	--col-button-yellow: #fcc250;
 	--col-button-yellow-light: #fff1b1;
 	--col-blue: #283673;
-	--col-blue-lighter: #374a9e;
+	--col-blue-lighter: #455bbd;
 	--col-yellow: #f8dc3c;
 	--col-orange: #f0773a;
 	--col-red: #b02228;
@@ -56,6 +56,18 @@
 	--button-bounce-ease: cubic-bezier(0, 1.82, 0.76, 1);
 
 	--logomark-height-fac: 226;
+}
+
+a {
+	color: var(--col-orange);
+}
+
+a:where(:hover, :focus-visible) {
+	color: var(--col-yellow);
+}
+
+a:active {
+	color: var(--col-red);
 }
 
 body {
@@ -584,18 +596,6 @@ footer section > * {
 	align-items: start;
 }
 
-footer a {
-	color: var(--col-orange);
-}
-
-footer a:where(:hover, :focus-visible) {
-	color: var(--col-yellow);
-}
-
-footer a:active {
-	opacity: 0.5;
-}
-
 footer > * {
 	line-height: 1.5;
 }
@@ -697,7 +697,7 @@ nav > a logo- h1 {
 	box-shadow: 0 0 0 0,
 		0 0 0 12px #0000,
 		0 0 0 14px #0000,
-			0 0 0 18px #0000;
+		0 0 0 18px #0000;
 	
 	transition: box-shadow 0.5s cubic-bezier(0.15, 1.84, 0.6, 0.9);
 }
