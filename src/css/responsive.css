@@ -24,3 +24,13 @@
 		--button-height-large: calc(var(--button-width-large) / var(--button-aspect-ratio));
 	}
 }
+
+/* @media (max-width: 780px) {
+	header-main {
+		gap: 4em;
+	}
+
+	header-main > header-nav {
+		grid-area: 2 / 1;
+	}
+} */
