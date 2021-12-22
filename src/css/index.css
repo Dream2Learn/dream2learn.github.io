@@ -557,7 +557,7 @@ logotype- {
 
 h1 {
 	font-family: var(--font-heading);
-	font-size: 4em;
+	font-size: 4.5em;
 }
 
 h2 {
@@ -812,13 +812,17 @@ body.page-login main-area > form {
 
 body.page-login main-area > article {
 	grid-area: 2 / 3;
+
+	line-height: 2;
 }
 
-body.page-login main-area > article h2:first-child {
-	margin-top: 0;
+body.page-login main-area > article h2 {
+	margin: 0;
 }
 
-body.page-login main-area > article dl {
+body.page-login main-area > article dt {
+	margin: 0.65em 0;
+
 	font-family: var(--font-large);
 	font-size: 1.35em;
 	letter-spacing: 0.02em;
@@ -826,13 +830,15 @@ body.page-login main-area > article dl {
 	color: var(--col-yellow);
 }
 
-body.page-login main-area > article dt {
+body.page-login main-area > article dd {
 	margin-left: 1em;
 	color: #ffffffcf;
-
-	line-height: 2;
 }
 
+
+body.page-login main-area > article dl + p {
+	margin-top: 2.5em;
+}
 
 
 
