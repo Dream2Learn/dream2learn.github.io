@@ -166,7 +166,7 @@ header-main > logo- {
 	z-index: 1;
 }
 
-header-main logo- h1 {
+header-main logo- logotype- {
 	font-size: 4em;
 	margin: 0;
 }
@@ -193,7 +193,7 @@ logo- .logomark {
 	width: 12.5em;
 }
 
-logo- h1 > strong {
+logo- logotype- > strong {
 	color: var(--col-yellow);
 }
 
@@ -551,8 +551,13 @@ main > article :is(p, dt) {
 	line-height: 2;
 }
 
+logotype- {
+	font-family: var(--font-heading);
+}
+
 h1 {
 	font-family: var(--font-heading);
+	font-size: 4em;
 }
 
 h2 {
@@ -663,11 +668,12 @@ nav logo- .logomark {
 	z-index: 1; /* to appear in front of point */
 }
 
-nav logo- h1 {
+nav logo- logotype- {
 	margin: 0;
 	margin-left: 0.5em;
 	padding: 0 0.25em;
 
+	font-size: 1.5em;
 	letter-spacing: 0.02em;
 }
 
@@ -716,7 +722,7 @@ nav > link-rack a.strong {
 }
 
 nav > link-rack a,
-nav > a logo- h1 {
+nav > a logo- logotype- {
 	box-shadow: 0 0 0 0,
 		0 0 0 12px #0000,
 		0 0 0 14px #0000,
@@ -726,7 +732,7 @@ nav > a logo- h1 {
 }
 
 nav > link-rack a:where(:hover, :focus-visible),
-nav > a:where(/*:hover, */:focus-visible) logo- h1 {
+nav > a:where(/*:hover, */:focus-visible) logo- logotype- {
 	box-shadow: 0 0 0 2px,
 			0 0 0 4px var(--col-blue),
 			0 0 0 4px var(--col-blue),
@@ -734,7 +740,7 @@ nav > a:where(/*:hover, */:focus-visible) logo- h1 {
 }
 
 nav > link-rack a:active/*,
-nav > a:active logo- h1*/ {
+nav > a:active logo- logotype-*/ {
 	box-shadow: 0 0 0 6px,
 			0 0 0 10px var(--col-blue),
 			0 0 0 10px var(--col-blue),
@@ -776,6 +782,7 @@ body.page-login main-area {
 	padding: 0 4em;
 	display: grid;
 	grid-template-columns: auto minmax(2em, 8vw) auto;
+	gap: 2em 0;
 
 	place-self: center;
 	justify-items: center;
@@ -785,12 +792,19 @@ body.page-login main-area > * {
 	margin: auto;
 }
 
+body.page-login main-area > h1 {
+	grid-area: 1/1 / 1/4;
+
+	width: 100%;
+	text-align: center;
+}
+
 body.page-login main-area > form {
-	grid-area: 1 / 1;
+	grid-area: 2 / 1;
 }
 
 body.page-login main-area > article {
-	grid-area: 1 / 3;
+	grid-area: 2 / 3;
 }
 
 body.page-login main-area > article h2:first-child {
