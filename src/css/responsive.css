@@ -5,7 +5,7 @@
 }
 
 @media (max-width: 1150px),
-		(max-height: 900px) {
+		(max-height: 850px) {
 	header {
 		--responsive-font-scale-factor: 0.75;
 

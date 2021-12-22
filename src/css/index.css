@@ -768,7 +768,11 @@ mesh-background {
 /* PAGE-SPECIFIC */
 
 body.page-login main {
-	height: 100%;
+	min-height: 100vh;
+}
+
+body.page-login main > section {
+	min-height: 100vh;
 	padding-top: var(--padding-top);
 	display: grid;
 
@@ -777,7 +781,7 @@ body.page-login main {
 			linear-gradient(var(--col-blue-shadow-3f), var(--col-blue-shadow-3f)),
 			url("../assets/header-mesh.svg");
 
-	/* animation: header-pattern-slide-2 24s infinite linear; */
+	animation: header-pattern-slide-2 24s infinite linear;
 
 	color: #fff;
 }
@@ -788,7 +792,7 @@ body.page-login main-area {
 	/* TODO some code is repeated from header-main. Unify them? */
 	padding: 0 4em;
 	display: grid;
-	grid-template-columns: auto minmax(2em, 8vw) auto;
+	grid-template-columns: 2fr minmax(1em, 3vw) 3fr;
 	gap: 2em 0;
 
 	place-self: center;
@@ -804,6 +808,7 @@ body.page-login main-area > h1 {
 
 	width: 100%;
 	text-align: center;
+	/* font-style: italic; */
 }
 
 body.page-login main-area > form {
@@ -856,10 +861,10 @@ body.page-login main-area > article dl + p {
 
 @keyframes header-pattern-slide-2 {
 	0% {
-		background-position-x: 0, 0;
+		background-position-x: 0, 0, 0;
 	}
 
 	100% {
-		background-position-x: 0, -280px;
+		background-position-x: 0, 0, 280px;
 	}
 }
