@@ -3,7 +3,9 @@
 }
 
 :root {
-	scroll-padding-top: 4rem;
+	--padding-top: 4rem;
+
+	scroll-padding-top: var(--padding-top);
 	scroll-behavior: smooth;
 
 	--col-button-orange: #fca62b;
@@ -17,6 +19,8 @@
 	--col-red: #b02228;
 	--col-blue-shadow: #131742;
 	--col-blue-shadow-7f: #1317427f;
+	--col-blue-shadow-3f: #1317423f;
+	--col-blue-dark-7f: #07071f7f;
 
 	--font-heading: Zilla Slab, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
 	--font-large: Atkinson Hyperlegible, Overpass, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
@@ -116,10 +120,13 @@ header {
 		100% 0);
 }
 
-header-main {
+header > header-main {
 	grid-area: 2 / 1;
-	/* margin: 0 15vw; */
 	padding: 0 4em 1em 4em;
+}
+
+header-main {
+	/* margin: 0 15vw; */
 	display: grid;
 	grid-template-columns: 1fr minmax(2em, 8vw) 1fr;
 
@@ -532,21 +539,16 @@ header-media > header-mesh-bottom {
 	background-repeat: repeat-x;
 }
 
-@keyframes header-pattern-slide {
-	0% {
-		background-position-x: 0;
-	}
-
-	100% {
-		background-position-x: -280px;
-	}
-}
-
 
 /* ARTICLE */
 
-article {
+main > article {
 	padding: 0 8vw;
+}
+
+main > article :is(p, dt) {
+	font-size: 1.2em;
+	line-height: 2;
 }
 
 h1 {
@@ -563,11 +565,6 @@ h2 > strong {
 	font-size: 1.333333em;
 	font-style: italic;
 	color: var(--col-orange);
-}
-
-article p {
-	font-size: 1.2em;
-	line-height: 2;
 }
 
 article p + h2 {
@@ -752,4 +749,86 @@ mesh-background {
 	/* background: url("../assets/header-mesh.svg"); */
 
 	pointer-events: none;
+}
+
+
+/* PAGE-SPECIFIC */
+
+body.page-login main {
+	height: 100%;
+	padding-top: var(--padding-top);
+	display: grid;
+
+	background: var(--col-blue);
+	background-image: radial-gradient(#0000, var(--col-blue-dark-7f)),
+			linear-gradient(var(--col-blue-shadow-3f), var(--col-blue-shadow-3f)),
+			url("../assets/header-mesh.svg");
+
+	/* animation: header-pattern-slide-2 24s infinite linear; */
+
+	color: #fff;
+}
+
+
+/* TODO Just rework this code in general. Can do it when finalizing stuff like the main page source code */
+body.page-login main-area {
+	/* TODO some code is repeated from header-main. Unify them? */
+	padding: 0 4em;
+	display: grid;
+	grid-template-columns: auto minmax(2em, 8vw) auto;
+
+	place-self: center;
+	justify-items: center;
+}
+
+body.page-login main-area > * {
+	margin: auto;
+}
+
+body.page-login main-area > form {
+	grid-area: 1 / 1;
+}
+
+body.page-login main-area > article {
+	grid-area: 1 / 3;
+}
+
+body.page-login main-area > article dl {
+	font-family: var(--font-large);
+	font-size: 1.35em;
+	letter-spacing: 0.02em;
+
+	color: var(--col-yellow);
+}
+
+body.page-login main-area > article dt {
+	margin-left: 1em;
+	color: #ffffffcf;
+
+	line-height: 2;
+}
+
+
+
+
+/* REUSED ANIMATIONS */
+
+@keyframes header-pattern-slide {
+	0% {
+		background-position-x: 0;
+	}
+
+	100% {
+		background-position-x: -280px;
+	}
+}
+
+@keyframes header-pattern-slide-2 {
+	0% {
+		background-position-x: 0, 0;
+	}
+
+	100% {
+		background-position-x: 0, -280px;
+	}
 }
