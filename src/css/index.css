@@ -13,7 +13,7 @@
 	--col-button-yellow-light: #fff1b1;
 	--col-blue: #283673;
 	--col-blue-af: #283673af;
-	--col-blue-lighter: #455bbd;
+	--col-blue-lighter: #5871df;
 	--col-yellow: #f8dc3c;
 	--col-orange: #f0773a;
 	--col-red: #b02228;
@@ -21,6 +21,7 @@
 	--col-blue-shadow-7f: #1317427f;
 	--col-blue-shadow-3f: #1317423f;
 	--col-blue-dark-7f: #07071f7f;
+	--col-pink-7f: #ff00547f;
 
 	--font-heading: Zilla Slab, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
 	--font-large: Atkinson Hyperlegible, Overpass, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
@@ -522,14 +523,17 @@ header-media > :where(header-mesh-top, header-mesh-bottom) {
 
 	position: relative; /* temp layering hack */
 
-	animation: header-pattern-slide 12s infinite linear;
+	animation: 12s infinite linear;
 }
 
 header-media > header-mesh-top {
 	grid-row: 1;
 
-	background: url("../assets/header-mesh.svg");
+	background: linear-gradient(var(--col-pink-7f), #0000),
+			url("../assets/header-mesh.svg");
 	background-position-y: 100%;
+
+	animation-name: header-pattern-slide-1;
 }
 
 header-media > header-mesh-bottom {
@@ -537,6 +541,8 @@ header-media > header-mesh-bottom {
 
 	background: url("../assets/header-mesh-bottom.svg");
 	background-repeat: repeat-x;
+
+	animation-name: header-pattern-slide;
 }
 
 
@@ -654,7 +660,7 @@ nav {
 	text-align: center;
 	font-family: var(--font-large);
 
-	box-shadow: 0 -3em 3em 3em var(--col-blue-shadow);
+	box-shadow: 0 -2em 2em 2em var(--col-blue-shadow);
 	/* filter: drop-shadow(0 0 2em #000000af); */
 
 	z-index: 1;
@@ -856,6 +862,16 @@ body.page-login main-area > article dl + p {
 
 	100% {
 		background-position-x: -280px;
+	}
+}
+
+@keyframes header-pattern-slide-1 {
+	0% {
+		background-position-x: 0, 0;
+	}
+
+	100% {
+		background-position-x: 0, -280px;
 	}
 }
 

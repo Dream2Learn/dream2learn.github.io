@@ -23,6 +23,10 @@
 		--button-height: calc(var(--button-width) / var(--button-aspect-ratio));
 		--button-height-large: calc(var(--button-width-large) / var(--button-aspect-ratio));
 	}
+
+	main > article :is(p, dt) {
+		font-size: unset;
+	}
 }
 
 /* @media (max-width: 780px) {
