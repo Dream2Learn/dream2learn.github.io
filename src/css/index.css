@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
 	box-sizing: border-box;
 }
 
@@ -29,6 +31,9 @@
 	--font-heading: Zilla Slab, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
 	--font-large: Atkinson Hyperlegible, Overpass, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
 	--font-body: Overpass, sans-serif;
+	--font-course-list: Bahnschrift, TW Cen MT, Overpass, sans-serif;
+
+	--nav-height: 3em;
 
 
 	/* M 140,0 0,94 V 179 l 140,94 140,-94 V 94 Z */
@@ -93,10 +98,19 @@ main {
 
 main a {
 	color: var(--col-orange);
+
+	/* background: linear-gradient(var(--col-orange), var(--col-orange));
+	background-repeat: no-repeat;
+	background-position-y: 1.5em;
+	
+	transition: background-position 0.1s cubic-bezier(0, 0.5, 0.5, 1), color 0.1s cubic-bezier(0, 0.5, 0.5, 1); */
 }
 
 main a:where(:hover, :focus-visible) {
 	color: var(--col-yellow);
+
+	/* color: #fff;
+	background-position-y: 0; */
 }
 
 main a:active {
@@ -108,10 +122,10 @@ header {
 
 	--header-padding-top: 10rem;
 	--scroll-indicator-offset-bottom: 14vh;
+	--scroll-indicator-offset-bottom-hovered: 11vh;
 
 	min-height: 95vh;
-	margin-bottom: calc(-1 * var(--scroll-indicator-offset-bottom) * 2/3);
-	/* padding-top: 10rem; */
+	margin-bottom: calc(-1 * var(--scroll-indicator-offset-bottom-hovered));
 	display: grid;
 	grid-template-rows: var(--header-padding-top) 1fr var(--gradient-height);
 
@@ -462,7 +476,7 @@ header-other scroll-indicator::before {
 }
 
 header-other scroll-indicator:where(:hover, :focus-within) {
-	--scroll-indicator-offset-bottom: 11vh;
+	--scroll-indicator-offset-bottom: var(--scroll-indicator-offset-bottom-hovered);
 }
 
 header-other scroll-indicator a:focus-visible {
@@ -531,7 +545,7 @@ header-media > :where(header-mesh-top, header-mesh-bottom) {
 header-media > header-mesh-top {
 	grid-row: 1;
 
-	background: linear-gradient(var(--col-pink-7f), #0000),
+	background: linear-gradient(var(--col-pink-7f) var(--nav-height), #0000),
 			url("../assets/header-mesh.svg");
 	background-position-y: 100%;
 
@@ -562,6 +576,8 @@ main > article :is(p, dt) {
 
 article {
 	position: relative;
+
+	--section-padding: 3rem;
 }
 
 logotype- {
@@ -595,7 +611,7 @@ article a > .photo {
 }
 
 article > * + section {
-	padding-top: 3rem;
+	padding-top: var(--section-padding);
 }
 
 
@@ -606,8 +622,26 @@ article > section {
 
 	z-index: 1; /* for course list layering */
 
-	padding: 3rem 8vw;
+	padding: var(--section-padding) 8vw;
 }
+
+article > section:nth-child(even) {
+	background: var(--col-blue-light-0f);
+}
+
+/* article > section:nth-child(even)::before {
+	content: " ";
+
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	width: 100%;
+	height: 3em;
+	border-top: solid #0000;
+	border-right: solid var(--col-blue-light-0f);
+
+	background: var(--col-blue-light-0f);
+} */
 
 
 /* TODO sizing is pretty sloppily done here */
@@ -628,13 +662,28 @@ article > section > photo-container {
 	flex-grow: 1;
 }
 
-article > section:nth-child(even) {
-	background: var(--col-blue-light-0f);
+article > section > stat-row {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+	text-align: center;
 }
 
-article > section:nth-child(even)::before {
-	content: " ";
-	background: var(--col-blue-light-0f);
+article > section > stat-row > stat- {
+	display: flex;
+	flex-flow: column;
+}
+
+article > section > stat-row > stat- > big-number {
+	font-family: var(--font-heading);
+	font-size: 4em;
+
+	color: var(--col-orange);
+}
+
+article > section > stat-row > stat- > div {
+	font-family: var(--font-large);
+	font-size: 2em;
 }
 
 article > sample-course-list {
@@ -650,7 +699,7 @@ article > sample-course-list {
 sample-course-list {
 	padding-top: 3em; /* to account for rotation */
 
-	font-family: Bahnschrift, TW Cen MT, Overpass, sans-serif;
+	font-family: var(--font-course-list);
 	font-weight: 900;
 	font-stretch: 75%;
 	font-size: 8em;
@@ -714,7 +763,7 @@ nav {
 	position: fixed;
 	top: 0;
 	width: 100%;
-	height: 3em;
+	height: var(--nav-height);
 	display: flex;
 	align-items: stretch;
 	justify-content: space-evenly;
@@ -731,6 +780,7 @@ nav {
 	/* filter: drop-shadow(0 0 2em #000000af); */
 
 	z-index: 1;
+	user-select: none;
 }
 
 nav logo- {
