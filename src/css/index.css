@@ -31,7 +31,7 @@
 	--font-heading: Zilla Slab, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
 	--font-large: Atkinson Hyperlegible, Overpass, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
 	--font-body: Overpass, sans-serif;
-	--font-course-list: Bahnschrift, TW Cen MT, Overpass, sans-serif;
+	--font-course-list: Barlow Condensed, Bahnschrift, TW Cen MT Condensed, TW Cen MT, sans-serif;
 
 	--nav-height: 3em;
 
@@ -569,15 +569,29 @@ main > article {
 	/* padding: 0 8vw; */
 }
 
-main > article :is(p, dt) {
+main > :is(article, footer) {
 	font-size: 1.2em;
-	line-height: 2;
 }
 
 article {
 	position: relative;
 
 	--section-padding: 3rem;
+}
+
+article :is(p, dl) {
+	line-height: 2;
+}
+
+dt {
+	font-family: var(--font-large);
+	font-size: 1.35em;
+	letter-spacing: 0.02em;
+}
+
+* + dt {
+	margin-top: 1em;
+	line-height: 2.5;
 }
 
 logotype- {
@@ -591,7 +605,7 @@ h1 {
 
 h2 {
 	font-family: var(--font-heading);
-	font-size: 3em;
+	font-size: 2.5em;
 	text-transform: uppercase;
 }
 
@@ -660,11 +674,16 @@ article > section > photo-container {
 	min-height: 16em;
 	/* max-height: 100%; */
 	flex-grow: 1;
+
+	transform: rotate(4deg);
 }
 
 article > section > stat-row {
 	display: flex;
+	flex-flow: wrap;
 	justify-content: space-evenly;
+	gap: 2em;
+
 	width: 100%;
 	text-align: center;
 }
@@ -676,14 +695,14 @@ article > section > stat-row > stat- {
 
 article > section > stat-row > stat- > big-number {
 	font-family: var(--font-heading);
-	font-size: 4em;
+	font-size: 3em;
 
 	color: var(--col-orange);
 }
 
 article > section > stat-row > stat- > div {
 	font-family: var(--font-large);
-	font-size: 2em;
+	font-size: 1.5em;
 }
 
 article > sample-course-list {
@@ -700,11 +719,11 @@ sample-course-list {
 	padding-top: 3em; /* to account for rotation */
 
 	font-family: var(--font-course-list);
-	font-weight: 900;
+	font-weight: 700;
 	font-stretch: 75%;
 	font-size: 8em;
 	line-height: 0.9;
-	letter-spacing: -0.02em;
+	letter-spacing: -0.05em;
 	white-space: nowrap;
 	text-transform: uppercase;
 
@@ -767,7 +786,7 @@ nav {
 	display: flex;
 	align-items: stretch;
 	justify-content: space-evenly;
-	/* padding: 0 4em; */
+	padding: 0 1em;
 
 	
 	background: var(--col-blue);
@@ -950,10 +969,6 @@ body.page-login main-area > article h2 {
 
 body.page-login main-area > article dt {
 	margin: 0.65em 0;
-
-	font-family: var(--font-large);
-	font-size: 1.35em;
-	letter-spacing: 0.02em;
 
 	color: var(--col-yellow);
 }

@@ -24,8 +24,22 @@
 		--button-height-large: calc(var(--button-width-large) / var(--button-aspect-ratio));
 	}
 
-	main > article :is(p, dt) {
+	main > :is(article, footer) {
 		font-size: unset;
+	}
+
+	article > section {
+		flex-flow: column;
+		gap: 1em;
+	}
+	
+	article > section > photo-container {
+		margin-left: unset;
+		min-height: unset;
+	}
+	
+	article > section > photo-container img {
+		max-height: 16em;
 	}
 }
 
