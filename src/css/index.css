@@ -94,6 +94,12 @@ main {
 	background-image: url("../assets/side-mesh-left.svg"), url("../assets/side-mesh-right.svg");
 	background-position: left, right;
 	background-repeat: repeat-y;
+	
+
+	/* If the screen width exceeds this value, the horizontal padding of the article will resize to take up the excess */
+	--screen-width-limit-reference: 1920px;
+
+	--article-padding-horizontal: max(8vw, calc(0.08 * var(--screen-width-limit-reference) + (100vw - var(--screen-width-limit-reference)) / 2));
 }
 
 main a {
@@ -576,11 +582,15 @@ main > :is(article, footer) {
 article {
 	position: relative;
 
-	--section-padding: 3rem;
+	--section-padding-vertical: 3rem;
 }
 
 article :is(p, dl) {
 	line-height: 2;
+}
+
+article * + p {
+	margin-top: 1.5em;
 }
 
 dt {
@@ -590,7 +600,7 @@ dt {
 }
 
 * + dt {
-	margin-top: 1em;
+	margin-top: 1.5em;
 	line-height: 2.5;
 }
 
@@ -621,22 +631,23 @@ article .photo {
 }
 
 article a > .photo {
-	width: 100%;
+	max-width: 100%;
 }
 
 article > * + section {
-	padding-top: var(--section-padding);
+	padding-top: var(--section-padding-vertical);
 }
 
 
 article > section {
 	display: flex;
 	align-items: center;
+	/* justify-content: center; */
 	position: relative;
 
 	z-index: 1; /* for course list layering */
 
-	padding: var(--section-padding) 8vw;
+	padding: var(--section-padding-vertical) var(--article-padding-horizontal);
 }
 
 article > section:nth-child(even) {
@@ -662,6 +673,8 @@ article > section:nth-child(even) {
 article > section > div {
 	flex-basis: 70%;
 	flex-grow: 1;
+
+	max-width: 75ch;
 }
 
 article > section > div > h2:first-child {
@@ -674,6 +687,8 @@ article > section > photo-container {
 	min-height: 16em;
 	/* max-height: 100%; */
 	flex-grow: 1;
+
+	text-align: center;
 
 	transform: rotate(4deg);
 }
@@ -748,13 +763,13 @@ sample-course-list > ul > li {
 /* FOOTER */
 
 footer {
-	padding: 2rem 8vw 6rem 8vw;
+	padding: 2rem var(--article-padding-horizontal) 6rem var(--article-padding-horizontal);
 	display: flex;
 	flex-flow: column;
 	align-items: start;
 
-	background: var(--col-blue);
-	background-image: url("../assets/header-mesh.svg");
+	background: url("../assets/header-mesh.svg")
+			var(--col-blue);
 	color: #fff;
 
 	z-index: 1;
