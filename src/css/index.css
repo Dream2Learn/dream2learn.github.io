@@ -634,6 +634,12 @@ article a > .photo {
 	max-width: 100%;
 }
 
+article dd {
+	margin-left: 0.75em;
+	padding-left: 0.75em;
+	border-left: 4px solid var(--col-orange);
+}
+
 article > * + section {
 	padding-top: var(--section-padding-vertical);
 }
@@ -674,7 +680,7 @@ article > section > div {
 	flex-basis: 70%;
 	flex-grow: 1;
 
-	max-width: 75ch;
+	max-width: 70ch;
 }
 
 article > section > div > h2:first-child {
@@ -989,7 +995,6 @@ body.page-login main-area > article dt {
 }
 
 body.page-login main-area > article dd {
-	margin-left: 1em;
 	color: #ffffffcf;
 }
 
