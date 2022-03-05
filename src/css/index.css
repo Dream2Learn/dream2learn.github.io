@@ -955,7 +955,7 @@ body.page-login main-area {
 	/* TODO some code is repeated from header-main. Unify them? */
 	padding: 0 4em;
 	display: grid;
-	grid-template-columns: 2fr minmax(1em, 3vw) 3fr;
+	grid-template-columns: 1fr minmax(1em, 3vw) 1fr;
 	gap: 2em 0;
 
 	place-self: center;
@@ -989,7 +989,7 @@ body.page-login main-area > article h2 {
 }
 
 body.page-login main-area > article dt {
-	margin: 0.65em 0;
+	/* margin: 0.65em 0; */
 
 	color: var(--col-yellow);
 }
