@@ -1,7 +1,10 @@
-@supports not (aspect-ratio: auto) {
-	hexagonal-button > a,
-	hexagonal-button::before,
+/* @supports not (aspect-ratio: auto) { */
 	nav logo-::before {
+		height: 100%;
+	}
+
+	hexagonal-button > a,
+	hexagonal-button::before {
 		/* Ye old aspect ratio workaround */
 
 		height: 0;
@@ -27,4 +30,4 @@
 
 		--hexagon-vertical-text-shift: 0px;
 	}
-}
+/* } */
