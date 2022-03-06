@@ -425,6 +425,10 @@ hexagonal-button > button-top {
 	text-align: center;
 	width: inherit; /* prevents enlarging due to text overflow */
 
+	/* Redefine inline */
+	--hexagon-vertical-text-shift: 0px;
+	padding-top: var(--hexagon-vertical-text-shift);
+
 	background: var(--col-button-orange);
 
 	user-select: none;
