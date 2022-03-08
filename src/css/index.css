@@ -688,6 +688,10 @@ article > section {
 	padding: var(--section-padding-vertical) var(--article-padding-horizontal);
 }
 
+article > section.hide-overflow {
+	overflow: hidden;
+}
+
 article > section:nth-child(even) {
 	background: var(--col-blue-light-0f);
 }
@@ -730,6 +734,8 @@ article > section > photo-container {
 
 	transform: rotate(4deg);
 }
+
+/* stat row */
 
 article > section.stat-row {
 	background: /* linear-gradient(90deg,
@@ -774,7 +780,9 @@ article > section > stat-row > stat- > div {
 	font-size: 1.5em;
 }
 
-article > sample-course-list {
+/* course list */
+
+/* article > sample-course-list {
 	--course-list-offset: 60%;
 
 	position: absolute;
@@ -782,15 +790,23 @@ article > sample-course-list {
 	top: 0;
 	width: calc(100% - var(--course-list-offset));
 	overflow-x: hidden;
+} */
+
+article > section > sample-course-list {
+	flex-shrink: 1;
+	width: 40%;
+	height: 0;
+	/* position: absolute; */
+	align-self: stretch;
 }
 
 sample-course-list {
-	padding-top: 3em; /* to account for rotation */
+	display: block;
 
 	font-family: var(--font-course-list);
 	font-weight: 700;
 	font-stretch: 75%;
-	font-size: 8em;
+	font-size: 6em;
 	line-height: 0.9;
 	letter-spacing: -0.05em;
 	white-space: nowrap;
@@ -798,19 +814,60 @@ sample-course-list {
 
 	color: var(--col-blue-gray);
 
-	opacity: 0.15;
-	user-select: none;
+	--course-list-ease: cubic-bezier(0.2, 0, 0.8, 1);
+	--course-list-animation-settings: 30s infinite var(--course-list-ease);
+
+	/* user-select: none; */
 }
 
 sample-course-list > ul {
 	list-style: none;
-	padding: 0;
+	margin: 0;
+	padding-left: 0;
+
+	animation: course-list-slide var(--course-list-animation-settings);
 }
 
 sample-course-list > ul > li {
 	transform-origin: 0 center;
-	transform: rotate(-30deg);
 	padding-left: 0.5em;
+
+	animation: course-list-rotate var(--course-list-animation-settings);
+}
+
+sample-course-list:hover > ul,
+sample-course-list:hover > ul > li {
+	animation-play-state: paused;
+}
+
+@keyframes course-list-slide {
+	0% {
+		transform: translateY(0);
+	}
+
+	80% {
+		transform: translateY(calc(-100% + 1em));
+		animation-timing-function: ease-in-out;
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes course-list-rotate {
+	0% {
+		transform: rotate(-10deg);
+	}
+
+	80% {
+		transform: rotate(10deg);
+		animation-timing-function: ease-in-out;
+	}
+
+	100% {
+		transform: rotate(-10deg);
+	}
 }
 
 
