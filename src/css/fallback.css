@@ -1,4 +1,4 @@
-/* @supports not (aspect-ratio: auto) { */
+@supports not (aspect-ratio: auto) {
 	nav logo-::before {
 		height: 100%;
 	}
@@ -30,4 +30,4 @@
 
 		--hexagon-vertical-text-shift: 0px;
 	}
-/* } */
+}

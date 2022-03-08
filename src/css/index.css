@@ -604,8 +604,22 @@ dt {
 }
 
 * + dt {
-	margin-top: 1.5em;
-	line-height: 2.5;
+	margin-top: 1.75em;
+	margin-bottom: 0.25em;
+	line-height: 2;
+}
+
+dl.counter-faq {
+	counter-reset: faq;
+}
+
+dl.counter-faq > dt {
+	counter-increment: faq;
+}
+
+dl.counter-faq > dt::before {
+	content: counter(faq) ".\2002";
+	color: var(--col-orange);
 }
 
 logotype- {
@@ -636,6 +650,12 @@ article .photo {
 
 article a > .photo {
 	max-width: 100%;
+}
+
+
+dl.counter-faq > dt::before {
+	/* opacity: 0.8; */
+	font-size: 0.8em;
 }
 
 article dd {
