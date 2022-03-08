@@ -16,6 +16,7 @@
 	--col-blue: #283673;
 	--col-blue-af: #283673af;
 	--col-blue-lighter: #5871df;
+	--col-blue-lighter-1f: #5871df1f;
 	--col-yellow: #f8dc3c;
 	--col-orange: #f0773a;
 	--col-orange-1f: #f0773a1f;
@@ -27,6 +28,8 @@
 	--col-blue-light-0f: #62ffff0f;
 	--col-blue-gray: #c2d0e3;
 	--col-pink-7f: #ff00547f;
+
+	--color-accent: var(--col-orange);
 
 	--font-heading: Zilla Slab, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
 	--font-large: Atkinson Hyperlegible, Overpass, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
@@ -619,7 +622,6 @@ dl.counter-faq > dt {
 
 dl.counter-faq > dt::before {
 	content: counter(faq) ".\2002";
-	color: var(--col-orange);
 }
 
 logotype- {
@@ -640,7 +642,12 @@ h2 {
 h2 > strong {
 	font-size: 1.333333em;
 	font-style: italic;
-	color: var(--col-orange);
+}
+
+h2 > strong,
+dl.counter-faq > dt::before {
+	color: var(--color-accent);
+	text-shadow: 0.125ch 0.125ch var(--col-yellow);
 }
 
 article .photo {
@@ -662,6 +669,7 @@ article dd {
 	margin-left: 0.75em;
 	padding-left: 0.75em;
 	border-left: 4px solid var(--col-orange);
+	box-shadow: -8px 0 8px -8px var(--col-yellow);
 }
 
 article > * + section {
@@ -723,6 +731,22 @@ article > section > photo-container {
 	transform: rotate(4deg);
 }
 
+article > section.stat-row {
+	background: /* linear-gradient(90deg,
+					#0000 33.333333%,
+					var(--col-blue-lighter-1f) 33.333333%,
+					var(--col-blue-lighter-1f) 66.666667%,
+					#0000 66.666667%), */
+			radial-gradient(var(--col-blue-lighter), var(--col-blue));
+	text-shadow: 0 0.5em 1em var(--col-blue-shadow);
+	box-shadow: 0 0.125em 0.5em 0em var(--col-blue-af)/* ,
+			0 0.125em 1em var(--col-blue-shadow) inset */;
+	/* transform: skewY(-1deg); */
+
+	color: var(--col-yellow);
+	--color-accent: #fff;
+}
+
 article > section > stat-row {
 	display: flex;
 	flex-flow: wrap;
@@ -742,7 +766,7 @@ article > section > stat-row > stat- > big-number {
 	font-family: var(--font-heading);
 	font-size: 3em;
 
-	color: var(--col-orange);
+	color: var(--color-accent);
 }
 
 article > section > stat-row > stat- > div {
