@@ -815,7 +815,7 @@ sample-course-list {
 	color: var(--col-blue-gray);
 
 	--course-list-ease: cubic-bezier(0.2, 0, 0.8, 1);
-	--course-list-animation-settings: 30s infinite var(--course-list-ease);
+	--course-list-animation-settings: 45s infinite var(--course-list-ease);
 
 	/* user-select: none; */
 }
@@ -833,6 +833,10 @@ sample-course-list > ul > li {
 	padding-left: 0.5em;
 
 	animation: course-list-rotate var(--course-list-animation-settings);
+}
+
+sample-course-list > ul > li:nth-child(even) {
+	color: var(--col-blue-lighter);
 }
 
 sample-course-list:hover > ul,
